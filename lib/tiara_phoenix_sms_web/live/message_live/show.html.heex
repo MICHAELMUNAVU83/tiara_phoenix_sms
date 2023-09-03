@@ -1,0 +1,31 @@
+<h1>Show Message</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.message_show_path(@socket, :show, @message)}>
+    <.live_component
+      module={TiaraPhoenixSmsWeb.MessageLive.FormComponent}
+      id={@message.id}
+      title={@page_title}
+      action={@live_action}
+      message={@message}
+      return_to={Routes.message_show_path(@socket, :show, @message)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Phone number:</strong>
+    <%= @message.phone_number %>
+  </li>
+
+  <li>
+    <strong>Text message:</strong>
+    <%= @message.text_message %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.message_show_path(@socket, :edit, @message), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.message_index_path(@socket, :index) %></span>
