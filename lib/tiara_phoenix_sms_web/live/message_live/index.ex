@@ -52,14 +52,12 @@ defmodule TiaraPhoenixSmsWeb.MessageLive.Index do
 
     body =
       %{
-        "name" => "TIARACONECT",
-        "body" => "09wiwu088e"
+        "name" => "Testing Name",
+        "body" => "Testing Body"
       }
       |> Poison.encode!()
 
     IO.inspect(HTTPoison.post(url, body, sms_headers))
-
-
 
     {:noreply, socket}
   end
