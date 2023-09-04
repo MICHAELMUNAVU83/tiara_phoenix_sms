@@ -40,6 +40,30 @@ defmodule TiaraPhoenixSmsWeb.MessageLive.Index do
     {:noreply, assign(socket, :messages, list_messages())}
   end
 
+  def handle_event("test", _params, socket) do
+    url = "http://localhost:4000/api/tests"
+
+    sms_headers = [
+      {
+        "Content-Type",
+        "application/json"
+      }
+    ]
+
+    body =
+      %{
+        "name" => "TIARACONECT",
+        "body" => "09wiwu088e"
+      }
+      |> Poison.encode!()
+
+    IO.inspect(HTTPoison.post(url, body, sms_headers))
+
+
+
+    {:noreply, socket}
+  end
+
   defp list_messages do
     Messages.list_messages()
   end

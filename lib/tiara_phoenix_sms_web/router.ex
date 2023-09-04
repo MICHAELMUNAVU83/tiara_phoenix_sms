@@ -27,10 +27,10 @@ defmodule TiaraPhoenixSmsWeb.Router do
     live "/messages/:id/show/edit", MessageLive.Show, :edit
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", TiaraPhoenixSmsWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", TiaraPhoenixSmsWeb do
+    pipe_through :api
+    resources "/tests", TestController, except: [:new, :edit]
+  end
 
   # Enables LiveDashboard only for development
   #
